@@ -1,31 +1,120 @@
 :root {
   font-family: Inter, sans-serif;
   font-feature-settings: "liga" 1, "calt" 1;
+
+  --bg: #f4f4f5;
+  --bg-accent: #e9e9ed;
+  --surface: #ffffff;
+  --surface-border: rgba(0, 0, 0, 0.06);
+  --fg: #1a1a1a;
+  --fg-muted: #6b6b72;
+  --fg-subtle: #9a9aa1;
+  --focus-ring: #4a90e2;
 }
+
 @supports (font-variation-settings: normal) {
   :root {
     font-family: InterVariable, sans-serif;
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e0e10;
+    --bg-accent: #17171a;
+    --surface: #1c1c20;
+    --surface-border: rgba(255, 255, 255, 0.08);
+    --fg: #f5f5f7;
+    --fg-muted: #a1a1aa;
+    --fg-subtle: #6b6b72;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
 body {
-  background-color: #f0f0f0;
   margin: 0;
   padding: 0;
 }
 
+body {
+  min-height: 100vh;
+  color: var(--fg);
+  background:
+    radial-gradient(
+      1200px 600px at 50% -10%,
+      var(--bg-accent),
+      transparent 60%
+    ),
+    var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
 .container {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 80px 24px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.intro {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-subtle);
 }
 
 h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 40px;
-  font-size: 36px;
+  margin: 0;
+  font-size: 44px;
   font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.lede {
+  margin: 0 auto;
+  max-width: 48ch;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--fg-muted);
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 24px;
+  padding: 48px 32px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 20px 40px -20px rgba(0, 0, 0, 0.18),
+    0 8px 16px -12px rgba(0, 0, 0, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05) inset,
+      0 20px 40px -20px rgba(0, 0, 0, 0.6),
+      0 8px 16px -12px rgba(0, 0, 0, 0.4);
+  }
 }
 
 .button-container {
@@ -42,15 +131,21 @@ h1 {
   border-radius: 20px;
   border: 2px solid;
   outline: none;
+  font-family: inherit;
   font-size: 18px;
   font-weight: 500;
   padding: 15px 30px;
   cursor: pointer;
-  width: 220px;
+  width: 240px;
   text-align: center;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   white-space: nowrap;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 4px;
 }
 
 .button::before,
@@ -58,6 +153,7 @@ h1 {
   content: "";
   position: absolute;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  pointer-events: none;
 }
 
 .button::before {
@@ -98,6 +194,18 @@ h1 {
     0 6px 10px rgba(0, 0, 0, 0.1);
 }
 
+.button-ghost {
+  background-color: transparent;
+  color: var(--fg);
+  border-color: currentColor;
+  box-shadow: 0 4px 0 var(--surface-border),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.button-ghost::after {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), transparent);
+}
+
 @media (hover: hover) {
   .button:hover {
     transform: translateY(-2px);
@@ -124,6 +232,12 @@ h1 {
     box-shadow: 0 6px 0 #bdbdbd, inset 0 1px 0 rgba(255, 255, 255, 0.5),
       0 8px 15px rgba(0, 0, 0, 0.2);
   }
+
+  .button-ghost:hover {
+    background-color: color-mix(in srgb, var(--fg) 6%, transparent);
+    box-shadow: 0 6px 0 var(--surface-border),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
 }
 
 .button:active,
@@ -134,7 +248,7 @@ h1 {
 
 .button-primary:active,
 .button-primary.pressed {
-  background-color: #2a2a2a; /* Dunkler als der Ausgangszustand */
+  background-color: #2a2a2a;
   box-shadow: 0 2px 0 #1a1a1a, inset 0 1px 0 rgba(255, 255, 255, 0.3),
     0 4px 8px rgba(0, 0, 0, 0.2);
   border-color: #0d0d0d;
@@ -142,24 +256,56 @@ h1 {
 
 .button-secondary:active,
 .button-secondary.pressed {
-  background-color: #d0d0d0; /* Dunkler als der Ausgangszustand */
+  background-color: #d0d0d0;
   box-shadow: 0 2px 0 #bdbdbd, inset 0 1px 0 rgba(255, 255, 255, 0.5),
     0 4px 8px rgba(0, 0, 0, 0.1);
   border-color: #a1a1a1;
 }
 
+.button-ghost:active,
+.button-ghost.pressed {
+  background-color: color-mix(in srgb, var(--fg) 10%, transparent);
+  box-shadow: 0 2px 0 var(--surface-border),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.meta {
+  text-align: center;
+  font-size: 13px;
+  color: var(--fg-subtle);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button,
+  .button::before,
+  .button::after {
+    transition: none;
+  }
+}
+
 @media (max-width: 600px) {
   .container {
-    padding: 20px 10px;
+    padding: 48px 16px 32px;
+    gap: 28px;
   }
 
   h1 {
-    font-size: 28px;
+    font-size: 32px;
+  }
+
+  .lede {
+    font-size: 15px;
+  }
+
+  .card {
+    padding: 32px 20px;
+    border-radius: 20px;
   }
 
   .button {
     font-size: 16px;
-    padding: 12px 24px;
-    width: 200px;
+    padding: 13px 24px;
+    width: 100%;
+    max-width: 280px;
   }
 }
