@@ -13,6 +13,7 @@
 
   --ridge-primary: #1a1a1a;
   --ridge-secondary: #bdbdbd;
+  --ridge-ghost: rgba(0, 0, 0, 0.18);
 }
 
 @supports (font-variation-settings: normal) {
@@ -31,8 +32,9 @@
     --fg-muted: #a1a1aa;
     --fg-subtle: #6b6b72;
 
-    --ridge-primary: #000000;
-    --ridge-secondary: #5a5a5a;
+    --ridge-primary: #5a5a5a;
+    --ridge-secondary: #6a6a6a;
+    --ridge-ghost: rgba(255, 255, 255, 0.22);
   }
 }
 
@@ -204,7 +206,7 @@ h1 {
   background-color: transparent;
   color: var(--fg);
   border-color: currentColor;
-  box-shadow: 0 4px 0 var(--surface-border),
+  box-shadow: 0 4px 0 var(--ridge-ghost),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
@@ -241,7 +243,7 @@ h1 {
 
   .button-ghost:hover {
     background-color: color-mix(in srgb, var(--fg) 6%, transparent);
-    box-shadow: 0 6px 0 var(--surface-border),
+    box-shadow: 0 6px 0 var(--ridge-ghost),
       inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 }
@@ -271,7 +273,7 @@ h1 {
 .button-ghost:active,
 .button-ghost.pressed {
   background-color: color-mix(in srgb, var(--fg) 10%, transparent);
-  box-shadow: 0 2px 0 var(--surface-border),
+  box-shadow: 0 2px 0 var(--ridge-ghost),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
