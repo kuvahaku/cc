@@ -10,6 +10,9 @@
   --fg-muted: #6b6b72;
   --fg-subtle: #9a9aa1;
   --focus-ring: #4a90e2;
+
+  --ridge-primary: #1a1a1a;
+  --ridge-secondary: #bdbdbd;
 }
 
 @supports (font-variation-settings: normal) {
@@ -27,6 +30,9 @@
     --fg: #f5f5f7;
     --fg-muted: #a1a1aa;
     --fg-subtle: #6b6b72;
+
+    --ridge-primary: #000000;
+    --ridge-secondary: #5a5a5a;
   }
 }
 
@@ -182,7 +188,7 @@ h1 {
   background-color: #333;
   color: #fff;
   border-color: #1a1a1a;
-  box-shadow: 0 4px 0 #1a1a1a, inset 0 1px 0 rgba(255, 255, 255, 0.3),
+  box-shadow: 0 4px 0 var(--ridge-primary), inset 0 1px 0 rgba(255, 255, 255, 0.3),
     0 6px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -190,7 +196,7 @@ h1 {
   background-color: #e0e0e0;
   color: #333;
   border-color: #bdbdbd;
-  box-shadow: 0 4px 0 #bdbdbd, inset 0 1px 0 rgba(255, 255, 255, 0.5),
+  box-shadow: 0 4px 0 var(--ridge-secondary), inset 0 1px 0 rgba(255, 255, 255, 0.5),
     0 6px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -222,14 +228,14 @@ h1 {
   .button-primary:hover {
     background-color: #404040;
     border-color: #262626;
-    box-shadow: 0 6px 0 #1a1a1a, inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    box-shadow: 0 6px 0 var(--ridge-primary), inset 0 1px 0 rgba(255, 255, 255, 0.3),
       0 8px 15px rgba(0, 0, 0, 0.3);
   }
 
   .button-secondary:hover {
     background-color: #d4d4d4;
     border-color: #a1a1a1;
-    box-shadow: 0 6px 0 #bdbdbd, inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    box-shadow: 0 6px 0 var(--ridge-secondary), inset 0 1px 0 rgba(255, 255, 255, 0.5),
       0 8px 15px rgba(0, 0, 0, 0.2);
   }
 
@@ -249,7 +255,7 @@ h1 {
 .button-primary:active,
 .button-primary.pressed {
   background-color: #2a2a2a;
-  box-shadow: 0 2px 0 #1a1a1a, inset 0 1px 0 rgba(255, 255, 255, 0.3),
+  box-shadow: 0 2px 0 var(--ridge-primary), inset 0 1px 0 rgba(255, 255, 255, 0.3),
     0 4px 8px rgba(0, 0, 0, 0.2);
   border-color: #0d0d0d;
 }
@@ -257,7 +263,7 @@ h1 {
 .button-secondary:active,
 .button-secondary.pressed {
   background-color: #d0d0d0;
-  box-shadow: 0 2px 0 #bdbdbd, inset 0 1px 0 rgba(255, 255, 255, 0.5),
+  box-shadow: 0 2px 0 var(--ridge-secondary), inset 0 1px 0 rgba(255, 255, 255, 0.5),
     0 4px 8px rgba(0, 0, 0, 0.1);
   border-color: #a1a1a1;
 }
